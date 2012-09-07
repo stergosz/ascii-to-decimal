@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 
   <head>
     <meta charset='utf-8' />
@@ -72,3 +73,71 @@ $ git checkout gh-pages
 
   </body>
 </html>
+=======
+<head>
+	<title>Ascii to Decimal Converter</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<link href="style.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript">
+		function AsciiToDecimal(c, method) {
+		    var b = '';
+		    var a = c.length;
+		    var prefix = '';
+		    for (var d = 0; d < a; d++) {
+		    	if (b != '' && method == 'comma'){
+		    		prefix = ',';
+		    	}else if (method == 'space'){
+					prefix = ' ';
+				}else{
+		    		prefix = '';
+		    	}
+		        b += prefix+c.charCodeAt(d).toString();
+		    }
+		    return b;
+		}
+		$(document).ready(function(){
+			$("#converter").click(function(){
+				var ascii = $("#ascii").val();
+				if (ascii != ''){
+					var decimal = AsciiToDecimal(ascii, 'comma');
+					$(".conversion").html(decimal).show();
+				}
+			});
+			$("#reset").click(function(){
+				$("#ascii").val('');
+				$(".conversion").html('').hide();
+			});
+			$("#comma_to_space").live('click', function(){
+				var ascii = $("#ascii").val();
+				if (ascii != ''){
+					var decimal = AsciiToDecimal(ascii, 'space');
+					$(".conversion").html(decimal).show();
+				}
+				$(this).val('space -> comma').attr("id", "space_to_comma");
+			});
+			$("#space_to_comma").live('click', function(){
+				var ascii = $("#ascii").val();
+				if (ascii != ''){
+					var decimal = AsciiToDecimal(ascii, 'comma');
+					$(".conversion").html(decimal).show();
+				}
+				$(this).val('comma -> space').attr("id", "comma_to_space");
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<a class="title" href="">Convert Ascii to Decimal with commas</a>
+		<div class="top">
+			<input type="text" id="ascii" />
+			<input type="button" value="reset" id="reset" />
+			<input type="button" value="comma -> space" id="comma_to_space" />
+			<input type="button" value="Convert to Decimal" id="converter" />
+		</div>
+		<div class="conversion"></div>
+	</div>
+</body>
+</html>
+>>>>>>> 37656355368e956aff0e9ccd9cf217eb36f5fc4c
